@@ -44,5 +44,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\full-linear-cut-solution-core\FullLinearCutSolution.Core.csproj">
+      <Project>{9dbd08a8-0e65-4b59-b92c-d80928ca4faa}</Project>
+      <Name>FullLinearCutSolution.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
