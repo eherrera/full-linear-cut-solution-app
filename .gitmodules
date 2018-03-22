@@ -1,0 +1,3 @@
+[submodule "full-linear-cut-solution-core"]
+	path = full-linear-cut-solution-core
+	url = https://github.com/eherrera/full-linear-cut-solution-core.git
