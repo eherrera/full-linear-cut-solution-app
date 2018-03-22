@@ -1,7 +1,7 @@
-﻿using FullLinearCutSolution.Core;
+﻿using System;
+using FullLinearCutSolution.Core;
 using FullLinearCutSolution.Core.Helpers;
 using FullLinearCutSolution.Core.Model;
-using System;
 
 namespace FullLinearCutSolution.Demo
 {
