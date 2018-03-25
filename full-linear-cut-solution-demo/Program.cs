@@ -2,6 +2,7 @@
 using FullLinearCutSolution.Core;
 using FullLinearCutSolution.Core.Helpers;
 using FullLinearCutSolution.Core.Model;
+using LinealCutOptimizer.Core.Model;
 
 namespace FullLinearCutSolution.Demo
 {
@@ -9,6 +10,7 @@ namespace FullLinearCutSolution.Demo
     {
         static void Main(string[] args)
         {            
+            Enum.TryParse(Console.ReadLine(), out OptimizerStrategy strategy);
             var bar = new Bar { Length = int.Parse(Console.ReadLine()) };
             var order = new Order();            
             var orderItemCount = int.Parse(Console.ReadLine());
@@ -20,7 +22,7 @@ namespace FullLinearCutSolution.Demo
                 order.Items.Add(new OrderItem { Measurement = decimal.Parse(item[0]), Units = int.Parse(item[1]) });
             }
             var optimizer = new Optimizer();
-            var result = optimizer.Optimize(bar, order);
+            var result = optimizer.Optimize(bar, order, strategy);
 
             var barCount = 0;
             foreach (var el in result)
