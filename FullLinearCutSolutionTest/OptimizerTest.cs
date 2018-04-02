@@ -21,7 +21,7 @@ namespace FullLinearCutSolutionTest
         public void TestTraditionalStrategy()
         {
             var result = TestOptimizer(OptimizerStrategy.Traditional);
-            Assert.AreEqual(result.Sum(r => r.BarCount), 0);
+            Assert.AreEqual(result.Sum(r => r.BarCount), 31);
         }
 
         private static IEnumerable<CutSolution> TestOptimizer(OptimizerStrategy strategy)
