@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LinealCutOptimizer;
 
 namespace FullLinearCutSolution
 {
@@ -15,6 +16,12 @@ namespace FullLinearCutSolution
         public frmMain()
         {
             InitializeComponent();
+        }
+
+        private void miSettings_Click(object sender, EventArgs e)
+        {
+            var settingsForm = new Settings();
+            settingsForm.ShowDialog();
         }
     }
 }
