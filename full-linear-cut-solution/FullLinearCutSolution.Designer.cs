@@ -46,6 +46,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.msMain.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -54,6 +56,7 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.btnNewOrder.SuspendLayout();
+            this.statusBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // msMain
@@ -62,7 +65,7 @@
             this.miFile});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
-            this.msMain.Size = new System.Drawing.Size(853, 24);
+            this.msMain.Size = new System.Drawing.Size(884, 24);
             this.msMain.TabIndex = 0;
             this.msMain.Text = "msMain";
             // 
@@ -94,7 +97,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 24);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(853, 508);
+            this.panel2.Size = new System.Drawing.Size(884, 508);
             this.panel2.TabIndex = 2;
             // 
             // splitContainer1
@@ -112,8 +115,8 @@
             this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
             this.splitContainer1.Panel1.Controls.Add(this.btnNewOrder);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Size = new System.Drawing.Size(853, 508);
-            this.splitContainer1.SplitterDistance = 256;
+            this.splitContainer1.Size = new System.Drawing.Size(884, 508);
+            this.splitContainer1.SplitterDistance = 265;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -122,7 +125,7 @@
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter1.Location = new System.Drawing.Point(0, 460);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(252, 3);
+            this.splitter1.Size = new System.Drawing.Size(261, 3);
             this.splitter1.TabIndex = 8;
             this.splitter1.TabStop = false;
             // 
@@ -134,13 +137,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 483);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(252, 21);
+            this.panel1.Size = new System.Drawing.Size(261, 21);
             this.panel1.TabIndex = 7;
             // 
             // btnDoIt
             // 
             this.btnDoIt.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnDoIt.Location = new System.Drawing.Point(147, 0);
+            this.btnDoIt.Location = new System.Drawing.Point(156, 0);
             this.btnDoIt.Name = "btnDoIt";
             this.btnDoIt.Size = new System.Drawing.Size(105, 21);
             this.btnDoIt.TabIndex = 2;
@@ -181,7 +184,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView1.Location = new System.Drawing.Point(0, 50);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(252, 410);
+            this.dataGridView1.Size = new System.Drawing.Size(261, 410);
             this.dataGridView1.TabIndex = 3;
             // 
             // measurementLength
@@ -201,7 +204,7 @@
             this.btnNewOrder.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnNewOrder.Location = new System.Drawing.Point(0, 24);
             this.btnNewOrder.Name = "btnNewOrder";
-            this.btnNewOrder.Size = new System.Drawing.Size(252, 26);
+            this.btnNewOrder.Size = new System.Drawing.Size(261, 26);
             this.btnNewOrder.TabIndex = 6;
             // 
             // button1
@@ -236,12 +239,29 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Orden de corte";
             // 
+            // statusBar
+            // 
+            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
+            this.statusBar.Location = new System.Drawing.Point(0, 532);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size(884, 22);
+            this.statusBar.TabIndex = 0;
+            this.statusBar.Text = "statusStrip1";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(0, 17);
+            this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(853, 532);
+            this.ClientSize = new System.Drawing.Size(884, 554);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.statusBar);
             this.Controls.Add(this.msMain);
             this.MainMenuStrip = this.msMain;
             this.Name = "frmMain";
@@ -258,6 +278,8 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.btnNewOrder.ResumeLayout(false);
+            this.statusBar.ResumeLayout(false);
+            this.statusBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,6 +305,8 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnDoIt;
+        private System.Windows.Forms.StatusStrip statusBar;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
     }
 }
 
