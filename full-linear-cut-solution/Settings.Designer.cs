@@ -182,6 +182,7 @@
             this.measurementUnitComboBox.Size = new System.Drawing.Size(300, 21);
             this.measurementUnitComboBox.TabIndex = 0;
             this.measurementUnitComboBox.ValueMember = "Id";
+            this.measurementUnitComboBox.SelectedIndexChanged += new System.EventHandler(this.measurementUnitComboBox_SelectedIndexChanged);
             // 
             // _params
             // 

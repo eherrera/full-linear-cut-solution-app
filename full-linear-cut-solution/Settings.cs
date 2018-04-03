@@ -40,7 +40,10 @@ namespace LinealCutOptimizer
         private void LoadParams()
         {
             _paramsModel = _paramsRepository.Get();
-            _params.DataSource = _paramsModel;
+            if (_paramsModel != null)
+            {
+                _params.DataSource = _paramsModel;
+            }
         }
 
         private void LoadMeasurements()
@@ -62,16 +65,25 @@ namespace LinealCutOptimizer
         {
             if (measurementUnitComboBox.SelectedIndex != -1)
             {
-                var model = _muModel[measurementUnitComboBox.SelectedIndex];
-                _paramsRepository.BeginUpdate(_paramsModel);
-                _paramsModel.MeasurementUnit = model;
-                _paramsRepository.Save();
+                //Saving params
+                var repositoryFactory = RepositoryFactory.GetInstance();
+                var paramsRepository = repositoryFactory.CreateParamsRepository();
+                var vParams = paramsRepository.Get(false);
+                vParams.MeasurementUnitId = _paramsModel.MeasurementUnitId;
+                paramsRepository.Save();
+
                 Close();
             }
             else
             {
                 MessageBox.Show("Debe seleccionar la UM predeterminada.");
             }
+        }
+
+        private void measurementUnitComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var model = _muModel[measurementUnitComboBox.SelectedIndex];
+            _paramsModel.MeasurementUnitId = model.Id;
         }
     }
 }
