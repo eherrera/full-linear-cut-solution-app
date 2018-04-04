@@ -127,7 +127,6 @@ namespace FullLinearCutSolution
                     }
                 };
             }
-            
 
             #endregion
 
@@ -140,7 +139,13 @@ namespace FullLinearCutSolution
                     throw new Exception("Lista de elementos de la orden vacía.");
                 }
                 var summary = SummaryBuilder.BuildFromOrderLines(_items.ToList(), _patterns);
-                if (document.Body != null) document.Body.InnerHtml = summary.ToHtml();
+                if (document.Body != null)
+                {
+                    var head =
+                        $"<head><link rel='stylesheet' type='text/css' href='{Application.StartupPath}/style.css'/></head>";
+                    var html = head + summary.ToHtml();
+                    document.Body.InnerHtml = html;
+                }
             }
             catch (Exception exception)
             {
