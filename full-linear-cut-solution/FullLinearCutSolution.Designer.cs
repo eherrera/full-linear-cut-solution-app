@@ -35,18 +35,19 @@
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.orderItemDataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDoIt = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnNewOrder = new System.Windows.Forms.Panel();
+            this.btnExportLines = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnExportLines = new System.Windows.Forms.Button();
-            this.orderItemDataGridView = new System.Windows.Forms.DataGridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,11 +57,12 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.orderItemDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.btnNewOrder.SuspendLayout();
             this.statusBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.orderItemDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderItemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,10 +122,37 @@
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
             this.splitContainer1.Panel1.Controls.Add(this.btnNewOrder);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.webBrowser1);
             this.splitContainer1.Size = new System.Drawing.Size(884, 508);
             this.splitContainer1.SplitterDistance = 271;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // orderItemDataGridView
+            // 
+            this.orderItemDataGridView.AllowUserToAddRows = false;
+            this.orderItemDataGridView.AllowUserToDeleteRows = false;
+            this.orderItemDataGridView.AutoGenerateColumns = false;
+            this.orderItemDataGridView.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.orderItemDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.orderItemDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.orderItemDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.orderItemDataGridView.DataSource = this.orderItemBindingSource;
+            this.orderItemDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.orderItemDataGridView.Enabled = false;
+            this.orderItemDataGridView.Location = new System.Drawing.Point(0, 50);
+            this.orderItemDataGridView.Name = "orderItemDataGridView";
+            this.orderItemDataGridView.ReadOnly = true;
+            this.orderItemDataGridView.Size = new System.Drawing.Size(267, 433);
+            this.orderItemDataGridView.TabIndex = 8;
+            this.orderItemDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.orderItemDataGridView_CellContentClick);
             // 
             // panel1
             // 
@@ -145,6 +174,7 @@
             this.btnDoIt.TabIndex = 2;
             this.btnDoIt.Text = "Realizar corte >>";
             this.btnDoIt.UseVisualStyleBackColor = true;
+            this.btnDoIt.Click += new System.EventHandler(this.btnDoIt_Click);
             // 
             // comboBox1
             // 
@@ -179,6 +209,17 @@
             this.btnNewOrder.Name = "btnNewOrder";
             this.btnNewOrder.Size = new System.Drawing.Size(267, 26);
             this.btnNewOrder.TabIndex = 6;
+            // 
+            // btnExportLines
+            // 
+            this.btnExportLines.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnExportLines.Enabled = false;
+            this.btnExportLines.Location = new System.Drawing.Point(140, 0);
+            this.btnExportLines.Name = "btnExportLines";
+            this.btnExportLines.Size = new System.Drawing.Size(75, 26);
+            this.btnExportLines.TabIndex = 2;
+            this.btnExportLines.Text = "Exportar";
+            this.btnExportLines.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -219,45 +260,21 @@
             this.statusLabel.Size = new System.Drawing.Size(0, 17);
             this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnExportLines
-            // 
-            this.btnExportLines.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnExportLines.Enabled = false;
-            this.btnExportLines.Location = new System.Drawing.Point(140, 0);
-            this.btnExportLines.Name = "btnExportLines";
-            this.btnExportLines.Size = new System.Drawing.Size(75, 26);
-            this.btnExportLines.TabIndex = 2;
-            this.btnExportLines.Text = "Exportar";
-            this.btnExportLines.UseVisualStyleBackColor = true;
-            // 
-            // orderItemDataGridView
-            // 
-            this.orderItemDataGridView.AllowUserToAddRows = false;
-            this.orderItemDataGridView.AllowUserToDeleteRows = false;
-            this.orderItemDataGridView.AutoGenerateColumns = false;
-            this.orderItemDataGridView.BackgroundColor = System.Drawing.SystemColors.Info;
-            this.orderItemDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.orderItemDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.orderItemDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
-            this.orderItemDataGridView.DataSource = this.orderItemBindingSource;
-            this.orderItemDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.orderItemDataGridView.Enabled = false;
-            this.orderItemDataGridView.Location = new System.Drawing.Point(0, 50);
-            this.orderItemDataGridView.Name = "orderItemDataGridView";
-            this.orderItemDataGridView.ReadOnly = true;
-            this.orderItemDataGridView.Size = new System.Drawing.Size(267, 433);
-            this.orderItemDataGridView.TabIndex = 8;
-            this.orderItemDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.orderItemDataGridView_CellContentClick);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.Filter = "Excel files|*.xlsx|Excel files|*.xls";
             this.openFileDialog1.Title = "Seleccione el archivo con las líneas de la orden";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(604, 504);
+            this.webBrowser1.TabIndex = 0;
+            this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -309,14 +326,15 @@
             this.panel2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.orderItemDataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.btnNewOrder.ResumeLayout(false);
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.orderItemDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderItemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -348,6 +366,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }
 

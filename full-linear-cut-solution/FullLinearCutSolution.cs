@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Security.Policy;
 using System.Threading;
 using System.Windows.Forms;
 using FullLinearCutSolution.Core;
+using FullLinearCutSolution.Core.Helpers;
 using FullLinearCutSolution.Core.Model;
 using LinealCutOptimizer;
 using LinealCutOptimizer.Core;
 using LinealCutOptimizer.Core.Helpers;
+using LinealCutOptimizer.Core.Model;
 using LinealCutOptimizer.Core.Repository;
 
 namespace FullLinearCutSolution
@@ -96,14 +99,53 @@ namespace FullLinearCutSolution
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            /*var fileUrl =
-                $"file:///{Assembly.GetCallingAssembly().Location}/template.html"
-                    .Replace($"\\{nameof(FullLinearCutSolution)}.exe", "").Replace("\\", "/");
-            var uri = new Uri("http://gmail.com");*/
+        }
 
+        private void btnDoIt_Click(object sender, EventArgs e)
+        {
+            LoadData();
+
+            #region borrar
+
+            if (_items == null)
+            {
+                _items = new List<OrderItem>
+                {
+                    new OrderItem
+                    {
+                        Group = "Other group",
+                        Reference = "10mm",
+                        Measurement = 4,
+                        Units = 5
+                    },
+                    new OrderItem
+                    {
+                        Group = "MyGroup",
+                        Reference = "10mm",
+                        Measurement = 5,
+                        Units = 2
+                    }
+                };
+            }
             
 
-            //webBrowser.Refresh();
+            #endregion
+
+            var document = webBrowser1.Document;
+            if (document == null) return;
+            try
+            {
+                if (_items == null)
+                {
+                    throw new Exception("Lista de elementos de la orden vacía.");
+                }
+                var summary = SummaryBuilder.BuildFromOrderLines(_items.ToList(), _patterns);
+                if (document.Body != null) document.Body.InnerHtml = summary.ToHtml();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"Ha ocurrido un error generando el reporte. Detalles: {exception.Message}");
+            }
         }
     }
 }
