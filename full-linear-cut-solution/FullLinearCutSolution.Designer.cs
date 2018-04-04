@@ -28,35 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.miFile = new System.Windows.Forms.ToolStripMenuItem();
             this.miSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDoIt = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.measurementLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnNewOrder = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnNew = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnExportLines = new System.Windows.Forms.Button();
+            this.orderItemDataGridView = new System.Windows.Forms.DataGridView();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.msMain.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.btnNewOrder.SuspendLayout();
             this.statusBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.orderItemDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderItemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // msMain
@@ -110,24 +115,15 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitter1);
+            this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.orderItemDataGridView);
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
-            this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
             this.splitContainer1.Panel1.Controls.Add(this.btnNewOrder);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Size = new System.Drawing.Size(884, 508);
-            this.splitContainer1.SplitterDistance = 265;
+            this.splitContainer1.SplitterDistance = 271;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // splitter1
-            // 
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.Location = new System.Drawing.Point(0, 460);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(261, 3);
-            this.splitter1.TabIndex = 8;
-            this.splitter1.TabStop = false;
             // 
             // panel1
             // 
@@ -137,13 +133,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 483);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(261, 21);
+            this.panel1.Size = new System.Drawing.Size(267, 21);
             this.panel1.TabIndex = 7;
             // 
             // btnDoIt
             // 
             this.btnDoIt.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnDoIt.Location = new System.Drawing.Point(156, 0);
+            this.btnDoIt.Location = new System.Drawing.Point(162, 0);
             this.btnDoIt.Name = "btnDoIt";
             this.btnDoIt.Size = new System.Drawing.Size(105, 21);
             this.btnDoIt.TabIndex = 2;
@@ -174,59 +170,26 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Estrategia";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Info;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.measurementLength,
-            this.qty});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 50);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(261, 410);
-            this.dataGridView1.TabIndex = 3;
-            // 
-            // measurementLength
-            // 
-            this.measurementLength.HeaderText = "Longitud";
-            this.measurementLength.Name = "measurementLength";
-            // 
-            // qty
-            // 
-            this.qty.HeaderText = "Cantidad";
-            this.qty.Name = "qty";
-            // 
             // btnNewOrder
             // 
+            this.btnNewOrder.Controls.Add(this.btnExportLines);
             this.btnNewOrder.Controls.Add(this.button1);
-            this.btnNewOrder.Controls.Add(this.btnNew);
             this.btnNewOrder.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnNewOrder.Location = new System.Drawing.Point(0, 24);
             this.btnNewOrder.Name = "btnNewOrder";
-            this.btnNewOrder.Size = new System.Drawing.Size(261, 26);
+            this.btnNewOrder.Size = new System.Drawing.Size(267, 26);
             this.btnNewOrder.TabIndex = 6;
             // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button1.Location = new System.Drawing.Point(75, 0);
+            this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(140, 26);
             this.button1.TabIndex = 1;
             this.button1.Text = "Cargar desde archivo...";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnNew
-            // 
-            this.btnNew.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnNew.Location = new System.Drawing.Point(0, 0);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(75, 26);
-            this.btnNew.TabIndex = 0;
-            this.btnNew.Text = "Nueva";
-            this.btnNew.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -256,6 +219,78 @@
             this.statusLabel.Size = new System.Drawing.Size(0, 17);
             this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // btnExportLines
+            // 
+            this.btnExportLines.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnExportLines.Enabled = false;
+            this.btnExportLines.Location = new System.Drawing.Point(140, 0);
+            this.btnExportLines.Name = "btnExportLines";
+            this.btnExportLines.Size = new System.Drawing.Size(75, 26);
+            this.btnExportLines.TabIndex = 2;
+            this.btnExportLines.Text = "Exportar";
+            this.btnExportLines.UseVisualStyleBackColor = true;
+            // 
+            // orderItemDataGridView
+            // 
+            this.orderItemDataGridView.AllowUserToAddRows = false;
+            this.orderItemDataGridView.AllowUserToDeleteRows = false;
+            this.orderItemDataGridView.AutoGenerateColumns = false;
+            this.orderItemDataGridView.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.orderItemDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.orderItemDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.orderItemDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.orderItemDataGridView.DataSource = this.orderItemBindingSource;
+            this.orderItemDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.orderItemDataGridView.Enabled = false;
+            this.orderItemDataGridView.Location = new System.Drawing.Point(0, 50);
+            this.orderItemDataGridView.Name = "orderItemDataGridView";
+            this.orderItemDataGridView.ReadOnly = true;
+            this.orderItemDataGridView.Size = new System.Drawing.Size(267, 433);
+            this.orderItemDataGridView.TabIndex = 8;
+            this.orderItemDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.orderItemDataGridView_CellContentClick);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "Excel files|*.xlsx|Excel files|*.xls";
+            this.openFileDialog1.Title = "Seleccione el archivo con las líneas de la orden";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Group";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Grupo";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Reference";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Diámetro";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Measurement";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Longitud";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Units";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Cantidad";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // orderItemBindingSource
+            // 
+            this.orderItemBindingSource.DataSource = typeof(FullLinearCutSolution.Core.Model.OrderItem);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -268,6 +303,7 @@
             this.Name = "frmMain";
             this.Text = "Full Linear Cut Solution";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -277,10 +313,11 @@
             this.splitContainer1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.btnNewOrder.ResumeLayout(false);
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.orderItemDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderItemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,20 +331,23 @@
         private System.Windows.Forms.ToolStripMenuItem miSettings;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn measurementLength;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qty;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel btnNewOrder;
-        private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnDoIt;
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
+        private System.Windows.Forms.Button btnExportLines;
+        private System.Windows.Forms.DataGridView orderItemDataGridView;
+        private System.Windows.Forms.BindingSource orderItemBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

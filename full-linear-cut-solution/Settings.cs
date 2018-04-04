@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using LinealCutOptimizer.Core;
+using FullLinearCutSolution.Core;
 using LinealCutOptimizer.Core.Helpers;
 using LinealCutOptimizer.Core.Repository;
 
@@ -12,6 +12,7 @@ namespace LinealCutOptimizer
     {
         private Params _paramsModel;
         private IList<MeasurementUnit> _muModel;
+        private IList<BarPattern> _patterns; 
         private readonly IBarPatternRepository _bpRepository;
         private readonly IParamsRepository _paramsRepository;
         private readonly IMesurementRepository _mesurementRepository;
@@ -35,12 +36,29 @@ namespace LinealCutOptimizer
 
         private void LoadBarPatterns()
         {
-            barPatternBindingSource.DataSource = _bpRepository.GetAll();
+            try
+            {
+                _patterns = _bpRepository.GetAll();
+            }
+            catch (Exception)
+            {
+                _patterns = new List<BarPattern> {new BarPattern {Diameter = "10mm", Length = 9, MinLengthReusable = 1}};
+            }
+            barPatternBindingSource.DataSource = _patterns;
         }
 
         private void LoadParams()
         {
-            _paramsModel = _paramsRepository.Get();
+            try
+            {
+                _paramsModel = _paramsRepository.Get();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error accediendo a la base de datos. Detalles:{e.Message}.");
+                _paramsModel = new Params {Id = 1, MeasurementUnitId = 1};
+            }
+
             if (_paramsModel != null)
             {
                 _params.DataSource = _paramsModel;
@@ -49,7 +67,15 @@ namespace LinealCutOptimizer
 
         private void LoadMeasurements()
         {
-            _muModel = _mesurementRepository.GetAll();
+            try
+            {
+                _muModel = _mesurementRepository.GetAll();
+            }
+            catch (Exception)
+            {
+                _muModel = new List<MeasurementUnit> {new MeasurementUnit {Code = "m", Name = "Metros", Id = 1}};
+            }
+
             _measurements.DataSource = _muModel;
 
             //@fixme resolve binding
@@ -108,13 +134,23 @@ namespace LinealCutOptimizer
             var fileName = openFileDialog1.FileName;
             try
             {
-                var patterns = ExcelLoader.Load<BarPattern>(fileName);
-                barPatternBindingSource.DataSource = patterns;
+                _patterns = ExcelLoader.Load<BarPattern>(fileName);
+                barPatternBindingSource.DataSource = _patterns;
             }
             catch (Exception exception)
             {
                 MessageBox.Show($"Error cargando archivo. Detalles: {exception.Message}");
             }
+        }
+
+        public Params GetParams()
+        {
+            return _paramsModel;
+        }
+
+        public IList<BarPattern> GetBarPatterns()
+        {
+            return _patterns;
         }
     }
 }

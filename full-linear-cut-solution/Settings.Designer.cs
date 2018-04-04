@@ -1,4 +1,6 @@
-﻿namespace LinealCutOptimizer
+﻿using FullLinearCutSolution.Core;
+
+namespace LinealCutOptimizer
 {
     partial class Settings
     {
@@ -95,6 +97,7 @@
             // btnExport
             // 
             this.btnExport.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnExport.Enabled = false;
             this.btnExport.Location = new System.Drawing.Point(413, 0);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(75, 34);
@@ -173,7 +176,7 @@
             // 
             // barPatternBindingSource
             // 
-            this.barPatternBindingSource.DataSource = typeof(LinealCutOptimizer.Core.BarPattern);
+            this.barPatternBindingSource.DataSource = typeof(BarPattern);
             // 
             // label1
             // 
@@ -200,11 +203,11 @@
             // 
             // _params
             // 
-            this._params.DataSource = typeof(LinealCutOptimizer.Core.Params);
+            this._params.DataSource = typeof(Params);
             // 
             // _measurements
             // 
-            this._measurements.DataSource = typeof(LinealCutOptimizer.Core.MeasurementUnit);
+            this._measurements.DataSource = typeof(MeasurementUnit);
             // 
             // panel2
             // 
@@ -240,7 +243,7 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.Filter = "Excel files|*.xls|Excel files|*.xlsx";
+            this.openFileDialog1.Filter = "Excel files|*.xlsx|Excel files|*.xls";
             this.openFileDialog1.Title = "Seleccione el archivo con los patrones de barra";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 

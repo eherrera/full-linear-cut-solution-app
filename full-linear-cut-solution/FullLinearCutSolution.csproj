@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{151B5B7C-1A7F-4CD3-B037-2670DE75CEC5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>LinealCutOptimizer</RootNamespace>
-    <AssemblyName>LinealCutOptimizer</AssemblyName>
+    <RootNamespace>FullLinearCutSolution</RootNamespace>
+    <AssemblyName>FullLinearCutSolution</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -84,6 +84,7 @@
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\FullLinearCutSolution.Core.Model.OrderItem.datasource" />
     <None Include="Properties\DataSources\LinealCutOptimizer.Core.BarPattern.datasource" />
     <None Include="Properties\DataSources\LinealCutOptimizer.Core.MeasurementUnit.datasource" />
     <None Include="Properties\DataSources\LinealCutOptimizer.Core.Params.datasource" />
@@ -101,11 +102,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="template.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\full-linear-cut-solution-core\FullLinearCutSolution.Core.csproj">
-      <Project>{9DBD08A8-0E65-4B59-B92C-D80928CA4FAA}</Project>
+      <Project>{9dbd08a8-0e65-4b59-b92c-d80928ca4faa}</Project>
       <Name>FullLinearCutSolution.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
