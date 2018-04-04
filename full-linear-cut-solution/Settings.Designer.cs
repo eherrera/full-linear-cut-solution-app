@@ -32,6 +32,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExport = new System.Windows.Forms.Button();
             this.btnLoadPatterns = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.barPatternDataGridView = new System.Windows.Forms.DataGridView();
@@ -46,6 +47,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -83,11 +85,22 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.btnLoadPatterns);
             this.panel1.Location = new System.Drawing.Point(17, 85);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(638, 34);
             this.panel1.TabIndex = 4;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnExport.Location = new System.Drawing.Point(413, 0);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 34);
+            this.btnExport.TabIndex = 1;
+            this.btnExport.Text = "Exportar";
+            this.btnExport.UseVisualStyleBackColor = true;
             // 
             // btnLoadPatterns
             // 
@@ -98,6 +111,7 @@
             this.btnLoadPatterns.TabIndex = 0;
             this.btnLoadPatterns.Text = "Cargar desde archivo...";
             this.btnLoadPatterns.UseVisualStyleBackColor = true;
+            this.btnLoadPatterns.Click += new System.EventHandler(this.btnLoadPatterns_Click);
             // 
             // label2
             // 
@@ -224,6 +238,12 @@
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "Excel files|*.xls|Excel files|*.xlsx";
+            this.openFileDialog1.Title = "Seleccione el archivo con los patrones de barra";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,5 +287,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Button btnLoadPatterns;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

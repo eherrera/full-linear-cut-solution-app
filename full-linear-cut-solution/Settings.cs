@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using LinealCutOptimizer.Core;
+using LinealCutOptimizer.Core.Helpers;
 using LinealCutOptimizer.Core.Repository;
 
 namespace LinealCutOptimizer
@@ -65,14 +66,24 @@ namespace LinealCutOptimizer
         {
             if (measurementUnitComboBox.SelectedIndex != -1)
             {
-                //Saving params
-                var repositoryFactory = RepositoryFactory.GetInstance();
-                var paramsRepository = repositoryFactory.CreateParamsRepository();
-                var vParams = paramsRepository.Get(false);
-                vParams.MeasurementUnitId = _paramsModel.MeasurementUnitId;
-                paramsRepository.Save();
+                try
+                {
+                    //Saving params
+                    var repositoryFactory = RepositoryFactory.GetInstance();
+                    var paramsRepository = repositoryFactory.CreateParamsRepository();
+                    var vParams = paramsRepository.Get(false);
+                    vParams.MeasurementUnitId = _paramsModel.MeasurementUnitId;
+                    paramsRepository.Save();
 
-                Close();
+                    //Saving bar patterns
+
+
+                    Close();
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show($"Error guardando los parámetros. Detalles: {exception.Message}");
+                }
             }
             else
             {
@@ -82,8 +93,28 @@ namespace LinealCutOptimizer
 
         private void measurementUnitComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (measurementUnitComboBox.SelectedIndex == -1) return;
             var model = _muModel[measurementUnitComboBox.SelectedIndex];
             _paramsModel.MeasurementUnitId = model.Id;
+        }
+
+        private void btnLoadPatterns_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+        }
+
+        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var fileName = openFileDialog1.FileName;
+            try
+            {
+                var patterns = ExcelLoader.Load<BarPattern>(fileName);
+                barPatternBindingSource.DataSource = patterns;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"Error cargando archivo. Detalles: {exception.Message}");
+            }
         }
     }
 }

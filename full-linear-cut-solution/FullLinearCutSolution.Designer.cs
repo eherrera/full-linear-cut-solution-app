@@ -245,6 +245,7 @@
             this.statusLabel});
             this.statusBar.Location = new System.Drawing.Point(0, 532);
             this.statusBar.Name = "statusBar";
+            this.statusBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.statusBar.Size = new System.Drawing.Size(884, 22);
             this.statusBar.TabIndex = 0;
             this.statusBar.Text = "statusStrip1";
